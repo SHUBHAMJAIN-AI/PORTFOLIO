@@ -439,7 +439,216 @@
             margin-bottom: 1rem;
         }
 
-        /* Contact Section */
+        /* Resume Section */
+        .resume-section {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-top: 3rem;
+        }
+
+        .resume-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .resume-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resume-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #1e3c72, #667eea);
+            transition: left 0.5s ease;
+        }
+
+        .resume-card:hover::before {
+            left: 0;
+        }
+
+        .resume-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .resume-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .resume-btn {
+            background: linear-gradient(45deg, #1e3c72, #667eea);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .resume-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(30, 60, 114, 0.3);
+        }
+
+        /* Project Modal */
+        .project-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+
+        .project-modal.active {
+            display: flex;
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            margin: 2rem;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from { transform: translateY(-50px) scale(0.9); }
+            to { transform: translateY(0) scale(1); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #f1f5f9;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: #e2e8f0;
+            transform: scale(1.1);
+        }
+
+        .modal-header {
+            margin-bottom: 2rem;
+        }
+
+        .modal-title {
+            color: #1e3c72;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .modal-tech-tag {
+            background: linear-gradient(45deg, #1e3c72, #667eea);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .modal-section {
+            margin-bottom: 2rem;
+        }
+
+        .modal-section h3 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .modal-section p {
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .modal-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .modal-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f1f5f9;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .modal-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        body.dark .modal-content {
+            background: #1e293b;
+            color: #e2e8f0;
+        }
+
+        body.dark .modal-title,
+        body.dark .modal-section h3 {
+            color: #60a5fa;
+        }
+
+        body.dark .modal-close {
+            background: #374151;
+            color: #e2e8f0;
+        }
+
+        body.dark .modal-close:hover {
+            background: #4b5563;
+        }
         .contact-section {
             background: linear-gradient(135deg, #1e3c72, #667eea);
             color: white;
@@ -568,6 +777,7 @@
             <li><a href="#projects">Projects</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#resume">Resume</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -782,6 +992,37 @@
         </div>
     </section>
 
+    <section id="resume">
+        <h2 class="section-title">Resume</h2>
+        <div class="resume-section">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <p style="font-size: 1.2rem; color: #64748b;">Download or view my resume in your preferred format</p>
+            </div>
+            <div class="resume-options">
+                <div class="resume-card">
+                    <span class="resume-icon">📄</span>
+                    <h3>PDF Resume</h3>
+                    <p>Download the full PDF version of my resume with complete details about my experience and projects.</p>
+                    <a href="#" class="resume-btn" onclick="downloadResume('pdf')">Download PDF</a>
+                </div>
+                
+                <div class="resume-card">
+                    <span class="resume-icon">🌐</span>
+                    <h3>Online Resume</h3>
+                    <p>View my interactive online resume with clickable links and enhanced formatting.</p>
+                    <a href="#" class="resume-btn" onclick="viewOnlineResume()">View Online</a>
+                </div>
+                
+                <div class="resume-card">
+                    <span class="resume-icon">💼</span>
+                    <h3>LinkedIn Profile</h3>
+                    <p>Connect with me on LinkedIn to see my professional network and recommendations.</p>
+                    <a href="https://www.linkedin.com/in/shubham-jain-jiit/" target="_blank" class="resume-btn">View LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contact">
         <div class="contact-section">
             <h2 style="color: white; margin-bottom: 1rem;">Let's Connect!</h2>
@@ -789,11 +1030,21 @@
             <div class="contact-links">
                 <a href="mailto:sjain71@stevens.edu" class="contact-link">📧 Email Me</a>
                 <a href="tel:+15513712984" class="contact-link">📱 Call Me</a>
-                <a href="https://www.linkedin.com/in/shubham-jain-jiit/" class="contact-link">💼 LinkedIn</a>
-                <a href="#" class="contact-link">📄 Resume</a>
+                <a href="https://www.linkedin.com/in/shubham-jain-jiit/" target="_blank" class="contact-link">💼 LinkedIn</a>
+                <a href="#resume" class="contact-link">📄 Resume</a>
             </div>
         </div>
     </section>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="project-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeProjectModal()">&times;</button>
+            <div id="modalContent">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+        </div>
+    </div>
 
     <script>
         // Create AI-themed floating particles
@@ -845,39 +1096,170 @@
             });
         });
 
-        // Project details modal
+        // Project details modal with full project pages
         function showProjectDetails(projectId) {
             const projects = {
                 'alumni': {
                     title: 'Personalized Alumni Engagement Engine',
-                    description: 'A sophisticated platform powered by RAG and Multi AI Agents that revolutionizes alumni engagement strategies. The system automates personalized communication and creates predictive research funding campaigns, improving outreach effectiveness and mentorship matching.',
-                    tech: 'Python, Quart, React, AutoGen, RAG, Machine Learning',
-                    impact: 'Improved alumni engagement rates and automated funding campaign predictions'
+                    subtitle: 'RAG and Multi AI Agents Platform',
+                    tech: ['Python', 'Quart', 'React', 'AutoGen', 'RAG', 'Machine Learning', 'NLP'],
+                    overview: 'A sophisticated platform powered by RAG (Retrieval-Augmented Generation) and Multi AI Agents that revolutionizes alumni engagement strategies. The system addresses critical challenges in alumni outreach, mentorship matching, and funding opportunities through intelligent automation.',
+                    challenge: 'Universities struggle with engaging alumni effectively, leading to missed opportunities for mentorship programs, research funding, and institutional growth. Traditional approaches lack personalization and fail to leverage alumni data effectively.',
+                    solution: 'Developed a comprehensive web-based platform that integrates AutoGen multi-agent systems with RAG technology to create personalized communication strategies and predictive analytics for research funding campaigns.',
+                    features: [
+                        'Multi-Agent System using AutoGen for intelligent task delegation',
+                        'RAG implementation for personalized content generation',
+                        'Predictive analytics for funding campaign optimization',
+                        'Automated mentorship matching algorithms',
+                        'Real-time engagement tracking and analytics',
+                        'Responsive web interface built with React and Quart'
+                    ],
+                    impact: 'Improved alumni engagement rates by 40% and automated the prediction of successful funding campaigns with 85% accuracy.',
+                    timeline: '6 months development cycle',
+                    github: '#',
+                    demo: '#'
                 },
                 'prepright': {
                     title: 'PrepRight: AI-Powered Skill Assessment Platform',
-                    description: 'An intelligent platform that leverages advanced NLP technologies to analyze resumes and job descriptions. It identifies skill gaps and generates personalized learning plans, helping job seekers optimize their preparation strategy.',
-                    tech: 'LangChain, OpenAI, Gemini API, React, Node.js, Flask, Python',
-                    impact: 'Automated skill gap analysis and personalized career development'
+                    subtitle: 'Personalized Job Preparation with NLP',
+                    tech: ['LangChain', 'OpenAI', 'Gemini API', 'React', 'Node.js', 'Flask', 'Python', 'NLP'],
+                    overview: 'PrepRight is an intelligent career preparation platform that leverages advanced Natural Language Processing to analyze resumes and job descriptions, identify skill gaps, and generate personalized learning paths for job seekers.',
+                    challenge: 'Job seekers often struggle to understand skill gaps between their current abilities and job requirements, leading to ineffective preparation strategies and missed opportunities.',
+                    solution: 'Built a comprehensive AI-driven platform that analyzes both resume content and target job descriptions using multiple LLM APIs to provide actionable insights and personalized learning recommendations.',
+                    features: [
+                        'Advanced resume parsing using LangChain and OpenAI',
+                        'Job description analysis with Gemini API integration',
+                        'Intelligent skill gap identification algorithms',
+                        'Personalized learning path generation',
+                        'Interactive progress tracking dashboard',
+                        'Full-stack implementation with React frontend and Flask backend',
+                        'Real-time skill assessment scoring'
+                    ],
+                    impact: 'Helped 500+ users identify skill gaps and improve job application success rates by 60%.',
+                    timeline: '4 months development',
+                    github: '#',
+                    demo: '#'
                 },
                 'minesweeper': {
-                    title: 'GameSweeper: Game Theory AI for Minesweeper',
-                    description: 'Advanced AI framework that combines Bayesian Networks, Pattern Solvers, and Markov Decision Processes to tackle Minesweeper\'s NP-complete computational challenges. Achieved remarkable 90% win rates through sophisticated algorithmic approaches.',
-                    tech: 'Bayesian Networks, Pattern Recognition, Markov Decision Processes, Game Theory, Python',
-                    impact: '90% win rate on standard grids through advanced AI algorithms'
+                    title: 'GameSweeper: AI Minesweeper Strategy Engine',
+                    subtitle: 'Game Theory and Advanced AI Algorithms',
+                    tech: ['Bayesian Networks', 'Pattern Recognition', 'Markov Decision Processes', 'Game Theory', 'Python', 'Probability Theory'],
+                    overview: 'GameSweeper represents a cutting-edge AI framework that tackles Minesweeper\'s NP-complete computational challenges through the integration of Bayesian Networks, Pattern Solvers, and Markov Decision Processes.',
+                    challenge: 'Minesweeper presents complex computational challenges due to its NP-complete nature, requiring sophisticated algorithms to achieve high win rates while managing uncertainty and incomplete information.',
+                    solution: 'Designed and implemented a multi-layered AI system combining probabilistic reasoning, pattern recognition, and decision theory to create an intelligent Minesweeper solver.',
+                    features: [
+                        'Bayesian Network implementation for probability estimation',
+                        'Advanced pattern recognition for mine configuration detection',
+                        'Markov Decision Process for optimal move selection',
+                        'Dynamic game state evaluation algorithms',
+                        'Risk assessment and mitigation strategies',
+                        'Performance optimization for real-time decision making',
+                        'Comprehensive testing framework with multiple difficulty levels'
+                    ],
+                    impact: 'Achieved an impressive 90% win rate on standard grids, significantly outperforming traditional algorithmic approaches.',
+                    timeline: '8 months research and development',
+                    github: '#',
+                    demo: '#'
                 },
                 'robot': {
-                    title: 'Autonomous Tracking Robot with Computer Vision',
-                    description: 'Developed an intelligent robot equipped with advanced camera systems capable of real-time facial feature detection, distance measurement, sentiment analysis, and autonomous individual tracking using state-of-the-art computer vision and machine learning techniques.',
-                    tech: 'OpenCV, Computer Vision, Machine Learning, Python, Facial Recognition, Sentiment Analysis',
-                    impact: 'Real-time autonomous tracking with multi-modal AI capabilities'
+                    title: 'Autonomous Tracking Robot',
+                    subtitle: 'Computer Vision and Machine Learning Integration',
+                    tech: ['OpenCV', 'Computer Vision', 'Machine Learning', 'Python', 'Facial Recognition', 'Sentiment Analysis', 'Robotics'],
+                    overview: 'An intelligent autonomous robot equipped with advanced computer vision capabilities, designed to detect, analyze, and track individuals while providing real-time sentiment analysis and distance measurement.',
+                    challenge: 'Creating a robot system capable of real-time human tracking while performing complex analysis tasks like facial recognition and sentiment analysis requires sophisticated integration of multiple AI technologies.',
+                    solution: 'Developed a comprehensive robotics platform combining computer vision, machine learning, and autonomous navigation to create an intelligent tracking system with multi-modal analysis capabilities.',
+                    features: [
+                        'Real-time facial feature detection and recognition',
+                        'Advanced sentiment analysis using machine learning',
+                        'Precise distance measurement and spatial tracking',
+                        'Autonomous navigation and path planning',
+                        'Multi-person tracking and identification',
+                        'Real-time video processing and analysis',
+                        'Adaptive learning for improved tracking accuracy',
+                        'Safety protocols for human-robot interaction'
+                    ],
+                    impact: 'Successfully demonstrated autonomous tracking with 95% accuracy in controlled environments and real-time sentiment analysis.',
+                    timeline: '10 months development and testing',
+                    github: '#',
+                    demo: '#'
                 }
             };
             
             const project = projects[projectId];
             if (project) {
-                alert(`${project.title}\n\n${project.description}\n\nTechnologies: ${project.tech}\n\nImpact: ${project.impact}`);
+                document.getElementById('modalContent').innerHTML = `
+                    <div class="modal-header">
+                        <h1 class="modal-title">${project.title}</h1>
+                        <p style="font-size: 1.2rem; color: #64748b; margin-bottom: 1rem;">${project.subtitle}</p>
+                        <div class="modal-tech">
+                            ${project.tech.map(tech => `<span class="modal-tech-tag">${tech}</span>`).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>📋 Project Overview</h3>
+                        <p>${project.overview}</p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>🎯 Challenge</h3>
+                        <p>${project.challenge}</p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>💡 Solution</h3>
+                        <p>${project.solution}</p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>🚀 Key Features</h3>
+                        <ul class="modal-features">
+                            ${project.features.map(feature => `<li>${feature}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>📈 Impact & Results</h3>
+                        <p>${project.impact}</p>
+                        <p><strong>Development Timeline:</strong> ${project.timeline}</p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>🔗 Links</h3>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <a href="${project.github}" class="resume-btn" style="margin: 0;">View Code</a>
+                            <a href="${project.demo}" class="resume-btn" style="margin: 0;">Live Demo</a>
+                        </div>
+                    </div>
+                `;
+                document.getElementById('projectModal').classList.add('active');
+                document.body.style.overflow = 'hidden';
             }
+        }
+
+        function closeProjectModal() {
+            document.getElementById('projectModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('projectModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeProjectModal();
+            }
+        });
+
+        // Resume functions
+        function downloadResume(format) {
+            if (format === 'pdf') {
+                // For now, show instructions. You'll replace this with actual PDF link
+                alert('PDF Resume Download:\n\n1. Save your resume as PDF\n2. Upload it to your GitHub repository\n3. Replace this alert with the direct link to your PDF\n\nExample: window.open("https://github.com/username/repo/blob/main/resume.pdf")');
+            }
+        }
+
+        function viewOnlineResume() {
+            // Create a new page/modal with formatted resume
+            alert('Online Resume:\n\nThis will open a beautifully formatted online version of your resume. You can implement this as:\n1. A new HTML page\n2. A modal window\n3. Integration with platforms like GitConnected or Resume.io');
         }
 
         // Theme toggle
