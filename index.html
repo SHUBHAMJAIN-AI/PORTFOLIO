@@ -70,6 +70,52 @@
             padding: 0 2rem;
         }
 
+        .profile-image-container {
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: slideUp 1s ease 0.3s forwards;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            object-fit: cover;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+            border-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .upload-placeholder {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 3px dashed rgba(255, 255, 255, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .upload-placeholder:hover {
+            border-color: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
         .hero h1 {
             font-size: 4rem;
             margin-bottom: 1rem;
@@ -646,7 +692,269 @@
             color: #e2e8f0;
         }
 
-        body.dark .modal-close:hover {
+        /* AI Chatbot */
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .chatbot-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #1e3c72, #667eea);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 4px 20px rgba(30, 60, 114, 0.4);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(30, 60, 114, 0.6);
+        }
+
+        .chatbot-window {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            animation: chatbotSlideIn 0.3s ease;
+        }
+
+        .chatbot-window.active {
+            display: flex;
+        }
+
+        @keyframes chatbotSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .chatbot-header {
+            background: linear-gradient(45deg, #1e3c72, #667eea);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .chatbot-header .bot-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            background: #f8fafc;
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-content {
+            max-width: 80%;
+            padding: 0.75rem 1rem;
+            border-radius: 18px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .message.bot .message-content {
+            background: white;
+            color: #333;
+            border: 1px solid #e2e8f0;
+        }
+
+        .message.user .message-content {
+            background: linear-gradient(45deg, #1e3c72, #667eea);
+            color: white;
+        }
+
+        .message-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        .message.bot .message-avatar {
+            background: linear-gradient(45deg, #1e3c72, #667eea);
+            color: white;
+        }
+
+        .message.user .message-avatar {
+            background: #64748b;
+            color: white;
+        }
+
+        .chatbot-input {
+            padding: 1rem;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            outline: none;
+            font-size: 0.9rem;
+        }
+
+        .chatbot-input input:focus {
+            border-color: #667eea;
+        }
+
+        .chatbot-send {
+            background: linear-gradient(45deg, #1e3c72, #667eea);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-send:hover {
+            transform: scale(1.1);
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.5rem 0;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #64748b;
+            animation: typingBounce 1.4s infinite ease-in-out both;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes typingBounce {
+            0%, 80%, 100% {
+                transform: scale(0);
+            }
+            40% {
+                transform: scale(1);
+            }
+        }
+
+        .quick-questions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .quick-question {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quick-question:hover {
+            background: #e2e8f0;
+            border-color: #cbd5e1;
+        }
+
+        /* Dark mode for chatbot */
+        body.dark .chatbot-window {
+            background: #1e293b;
+        }
+
+        body.dark .chatbot-messages {
+            background: #0f172a;
+        }
+
+        body.dark .message.bot .message-content {
+            background: #374151;
+            color: #e2e8f0;
+            border-color: #4b5563;
+        }
+
+        body.dark .chatbot-input {
+            border-color: #4b5563;
+        }
+
+        body.dark .chatbot-input input {
+            background: #374151;
+            border-color: #4b5563;
+            color: #e2e8f0;
+        }
+
+        body.dark .quick-question {
+            background: #374151;
+            color: #e2e8f0;
+            border-color: #4b5563;
+        }
+
+        body.dark .quick-question:hover {
             background: #4b5563;
         }
         .contact-section {
@@ -784,6 +1092,11 @@
 
     <section id="home" class="hero">
         <div class="hero-content">
+            <div class="profile-image-container">
+                <div class="upload-placeholder" onclick="uploadProfileImage()">
+                    📷<br>Click to add<br>your photo
+                </div>
+            </div>
             <h1>Shubham Jain</h1>
             <p class="subtitle">AI/ML Engineer & Researcher</p>
             <div class="contact-info">
@@ -1046,6 +1359,38 @@
         </div>
     </div>
 
+    <!-- AI Chatbot -->
+    <div class="chatbot-container">
+        <button class="chatbot-toggle" onclick="toggleChatbot()">🤖</button>
+        <div id="chatbotWindow" class="chatbot-window">
+            <div class="chatbot-header">
+                <div class="bot-avatar">🤖</div>
+                <div>
+                    <div style="font-weight: bold;">Ask me about Shubham!</div>
+                    <div style="font-size: 0.8rem; opacity: 0.9;">Powered by Gemini AI</div>
+                </div>
+            </div>
+            <div id="chatbotMessages" class="chatbot-messages">
+                <div class="message bot">
+                    <div class="message-avatar">🤖</div>
+                    <div class="message-content">
+                        Hi! I'm Shubham's AI assistant. I know all about his experience, projects, and skills. What would you like to know?
+                        <div class="quick-questions">
+                            <div class="quick-question" onclick="askQuestion('Tell me about his experience')">Experience</div>
+                            <div class="quick-question" onclick="askQuestion('What are his key projects?')">Projects</div>
+                            <div class="quick-question" onclick="askQuestion('What technologies does he know?')">Skills</div>
+                            <div class="quick-question" onclick="askQuestion('How can I contact him?')">Contact</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbotInput" placeholder="Ask about Shubham..." onkeypress="handleChatbotKeypress(event)">
+                <button class="chatbot-send" onclick="sendChatbotMessage()">➤</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Create AI-themed floating particles
         function createParticles() {
@@ -1249,17 +1594,221 @@
             }
         });
 
-        // Resume functions
-        function downloadResume(format) {
-            if (format === 'pdf') {
-                // For now, show instructions. You'll replace this with actual PDF link
-                alert('PDF Resume Download:\n\n1. Save your resume as PDF\n2. Upload it to your GitHub repository\n3. Replace this alert with the direct link to your PDF\n\nExample: window.open("https://github.com/username/repo/blob/main/resume.pdf")');
+        // Profile image upload
+        function uploadProfileImage() {
+            alert('To add your profile picture:\n\n1. Save your photo as "profile.jpg" or "profile.png"\n2. Upload it to your GitHub repository\n3. Update the code to use your image\n\nI\'ll show you how to do this after we finish the chatbot setup!');
+        }
+
+        // AI Chatbot functionality
+        let chatbotOpen = false;
+        const GEMINI_API_KEY = 'YOUR_GEMINI_API_KEY'; // You'll need to add your actual API key here
+
+        // Shubham's comprehensive information for the AI
+        const shubhamInfo = `
+        PERSONAL INFORMATION:
+        - Name: Shubham Jain
+        - Current Position: Research Assistant at Stevens Institute of Technology & AI/ML Engineer
+        - Education: MS in Applied Artificial Intelligence at Stevens Institute (GPA: 3.89), B.Tech in ECE from JIIT
+        - Location: Hoboken, New Jersey (studying), originally from India
+        - Contact: sjain71@stevens.edu, +1(551)-371-2984
+        - LinkedIn: https://www.linkedin.com/in/shubham-jain-jiit/
+
+        CURRENT WORK:
+        - Research Assistant under Professor Shucheng Yu (Jan 2025-Present)
+        - Developing autonomous robot with integrated AI decision-making capabilities
+        - Working with Jetson Orin Nano for real-time perception and navigation
+        - Implementing multi-threaded camera processing with OpenCV/GStreamer
+
+        WORK EXPERIENCE:
+        - Software Engineer at Deloitte USI (July 2019 - July 2024) - 5 years
+        - Worked with Fortune 500 clients: Disney, Walmart, GE
+        - Delivered robust applications using Python, Java, JavaScript
+        - Integrated AI and computer vision using Amazon SageMaker
+        - Implemented automation frameworks reducing manual effort by 30-70%
+        - Saved 2000-3000 project hours through automation
+
+        TECHNICAL SKILLS:
+        - ML Frameworks: PyTorch, TensorFlow, Keras, OpenCV
+        - Data Science: NumPy, Pandas, Matplotlib, Jupyter, Tableau
+        - Programming: Python, CUDA C, Java, JavaScript, SQL, C++, C#, HTML
+        - GenAI: LangChain, Crew AI, AutoGen 0.4, LangGraph, RAG
+        - Cloud: AWS (Cloud Practitioner Certified)
+        - Tools: GitHub, JIRA, Java-Selenium
+
+        KEY PROJECTS:
+        1. Personalized Alumni Engagement Engine - RAG and Multi AI Agents platform using Python, Quart, React, AutoGen
+        2. PrepRight - AI-powered skill assessment platform using LangChain, OpenAI, Gemini API
+        3. GameSweeper - AI Minesweeper with 90% win rate using Bayesian Networks, MDPs
+        4. Autonomous Tracking Robot - Computer vision robot with facial recognition and sentiment analysis
+
+        ACHIEVEMENTS:
+        - Provost Scholarship Recipient at Stevens (2024-2025)
+        - Spring Research Scholarship Recipient (2025)
+        - 2nd position in AWS DeepRacer competition (Deloitte)
+        - Finalist in Technoutsav 2018 for smart parking system
+
+        CERTIFICATIONS:
+        - Multi Agent System CrewAI
+        - AWS Cloud Practitioner Certified
+        - Google Introduction to GenAI
+
+        INTERESTS & GOALS:
+        - Passionate about AI/ML, autonomous systems, computer vision
+        - Interested in research and industry applications of AI
+        - Open to collaboration, research opportunities, and industry positions
+        - Enjoys working on challenging problems in AI and robotics
+        `;
+
+        function toggleChatbot() {
+            const window = document.getElementById('chatbotWindow');
+            chatbotOpen = !chatbotOpen;
+            
+            if (chatbotOpen) {
+                window.classList.add('active');
+            } else {
+                window.classList.remove('active');
             }
         }
 
-        function viewOnlineResume() {
-            // Create a new page/modal with formatted resume
-            alert('Online Resume:\n\nThis will open a beautifully formatted online version of your resume. You can implement this as:\n1. A new HTML page\n2. A modal window\n3. Integration with platforms like GitConnected or Resume.io');
+        function handleChatbotKeypress(event) {
+            if (event.key === 'Enter') {
+                sendChatbotMessage();
+            }
+        }
+
+        function askQuestion(question) {
+            document.getElementById('chatbotInput').value = question;
+            sendChatbotMessage();
+        }
+
+        async function sendChatbotMessage() {
+            const input = document.getElementById('chatbotInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+
+            // Add user message to chat
+            addMessageToChat('user', message);
+            input.value = '';
+
+            // Show typing indicator
+            showTypingIndicator();
+
+            try {
+                // Call Gemini API
+                const response = await callGeminiAPI(message);
+                hideTypingIndicator();
+                addMessageToChat('bot', response);
+            } catch (error) {
+                hideTypingIndicator();
+                addMessageToChat('bot', 'Sorry, I encountered an error. Please try again or contact Shubham directly at sjain71@stevens.edu');
+            }
+        }
+
+        async function callGeminiAPI(userMessage) {
+            // For demo purposes, return predefined responses
+            // In production, you would make actual API calls to Gemini
+            
+            const responses = {
+                'experience': 'Shubham has 5+ years of software engineering experience at Deloitte, working with Fortune 500 clients like Disney, Walmart, and GE. He\'s currently a Research Assistant at Stevens Institute working on autonomous robots with AI decision-making capabilities.',
+                
+                'projects': 'His key projects include: 1) Alumni Engagement Engine using RAG and Multi AI Agents, 2) PrepRight - AI skill assessment platform, 3) GameSweeper - AI Minesweeper achieving 90% win rate, and 4) Autonomous Tracking Robot with computer vision.',
+                
+                'skills': 'Shubham is skilled in ML frameworks (PyTorch, TensorFlow, Keras), programming languages (Python, CUDA C, Java, JavaScript), GenAI technologies (LangChain, AutoGen, RAG), and cloud platforms (AWS certified).',
+                
+                'contact': 'You can reach Shubham at sjain71@stevens.edu, call him at +1(551)-371-2984, or connect on LinkedIn: https://www.linkedin.com/in/shubham-jain-jiit/',
+                
+                'education': 'Shubham is pursuing MS in Applied Artificial Intelligence at Stevens Institute of Technology (GPA: 3.89) and holds a B.Tech in Electronics and Communication Engineering from JIIT.',
+                
+                'achievements': 'He\'s a Provost Scholarship recipient, won 2nd place in AWS DeepRacer competition, was a Technoutsav 2018 finalist, and has saved 2000-3000 project hours through automation at Deloitte.'
+            };
+
+            // Simple keyword matching for demo
+            const lowerMessage = userMessage.toLowerCase();
+            
+            if (lowerMessage.includes('experience') || lowerMessage.includes('work') || lowerMessage.includes('job')) {
+                return responses.experience;
+            } else if (lowerMessage.includes('project')) {
+                return responses.projects;
+            } else if (lowerMessage.includes('skill') || lowerMessage.includes('technology') || lowerMessage.includes('programming')) {
+                return responses.skills;
+            } else if (lowerMessage.includes('contact') || lowerMessage.includes('reach') || lowerMessage.includes('email')) {
+                return responses.contact;
+            } else if (lowerMessage.includes('education') || lowerMessage.includes('study') || lowerMessage.includes('degree')) {
+                return responses.education;
+            } else if (lowerMessage.includes('achievement') || lowerMessage.includes('award') || lowerMessage.includes('scholarship')) {
+                return responses.achievements;
+            } else {
+                return 'I can tell you about Shubham\'s experience, projects, skills, education, achievements, or how to contact him. What specific aspect would you like to know more about?';
+            }
+
+            // Uncomment below for actual Gemini API integration:
+            /*
+            const apiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
+            
+            const prompt = `You are an AI assistant representing Shubham Jain. Answer questions about him based on this information: ${shubhamInfo}
+            
+            User question: ${userMessage}
+            
+            Provide a helpful, informative response about Shubham. Keep responses concise but informative.`;
+
+            const response = await fetch(`${apiUrl}?key=${GEMINI_API_KEY}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    contents: [{
+                        parts: [{
+                            text: prompt
+                        }]
+                    }]
+                })
+            });
+
+            const data = await response.json();
+            return data.candidates[0].content.parts[0].text;
+            */
+        }
+
+        function addMessageToChat(sender, message) {
+            const messagesContainer = document.getElementById('chatbotMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            
+            messageDiv.innerHTML = `
+                <div class="message-avatar">${sender === 'bot' ? '🤖' : '👤'}</div>
+                <div class="message-content">${message}</div>
+            `;
+            
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const messagesContainer = document.getElementById('chatbotMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.id = 'typingIndicator';
+            typingDiv.className = 'message bot';
+            typingDiv.innerHTML = `
+                <div class="message-avatar">🤖</div>
+                <div class="message-content">
+                    <div class="typing-indicator">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                </div>
+            `;
+            messagesContainer.appendChild(typingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
         }
 
         // Theme toggle
